@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import '../widgets/profile_widget_1.dart';
 import '../widgets/profile_widget_2.dart';
 import '../widgets/profile_widget_3.dart';
-import '../modals/user_data.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

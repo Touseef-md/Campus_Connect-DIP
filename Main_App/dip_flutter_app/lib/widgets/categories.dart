@@ -25,40 +25,39 @@ class Category extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        margin: EdgeInsets.all(
-          10,
+    return Container(
+      margin: EdgeInsets.all(
+        10,
+      ),
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.28,
+      child: GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 100,
+          childAspectRatio: 1,
+          crossAxisSpacing: 20,
+          // mainAxisExtent: 100,
         ),
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.28,
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 100,
-            childAspectRatio: 1,
-            crossAxisSpacing: 20,
-            // mainAxisExtent: 100,
-          ),
-          padding: EdgeInsets.all(3),
-          itemBuilder: (ctx, index) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 40,
-                  backgroundImage: NetworkImage(
-                    (categories[index].values.toList())[0],
-                  ),
+        padding: EdgeInsets.all(3),
+        itemBuilder: (ctx, index) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage(
+                  (categories[index].values.toList())[0],
                 ),
-                Text(
-                  categories[index].keys.toList()[0],
-                )
-              ],
-            );
-            ;
-          },
-          itemCount: categories.length,
-        ),
+              ),
+              Text(
+                categories[index].keys.toList()[0],
+              )
+            ],
+          );
+          ;
+        },
+        itemCount: categories.length,
       ),
     );
   }
