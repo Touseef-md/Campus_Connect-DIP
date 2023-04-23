@@ -56,14 +56,23 @@ class MealDetailScreen extends StatelessWidget {
             ),
             Text(
               'Description: ${meal.description}',
+              style: TextStyle(
+                color: Colors.black,
+              ),
             ),
             Row(
               children: [
                 Text(
                   'Shopname: ',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
                 Text(
                   meal.shopName,
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 )
               ],
             ),
@@ -71,14 +80,23 @@ class MealDetailScreen extends StatelessWidget {
               children: [
                 Text(
                   'Location: ',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 ),
                 Text(
                   meal.location,
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
                 )
               ],
             ),
             Text(
               'Open/Close: ${meal.openTime.hour}/${meal.closeTime.hour}',
+              style: TextStyle(
+                color: Colors.black,
+              ),
             ),
           ],
         ),

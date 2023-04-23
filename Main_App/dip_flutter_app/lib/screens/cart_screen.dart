@@ -1,3 +1,4 @@
+import 'package:dip_flutter_app/providers/vendor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/divider_text.dart';
@@ -6,6 +7,7 @@ import '../widgets/current_quantity.dart';
 import '../providers/cart_provider.dart';
 import '../providers/order_provider.dart';
 import '../screens/orders_screen.dart';
+import '../screens/vender_screen.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
@@ -19,6 +21,10 @@ class CartScreen extends StatelessWidget {
       // listen: false,
     );
     final order = Provider.of<Orders>(
+      context,
+      listen: false,
+    );
+    final vendorOrder = Provider.of<VendorOrders>(
       context,
       listen: false,
     );
@@ -86,8 +92,7 @@ class CartScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CurrentQuantity(
-                                quantity:
-                                    _itemValues[index].quantity,
+                                quantity: _itemValues[index].quantity,
                                 width: 85,
                                 changeState: true,
                                 price: _itemValues[index].price,
@@ -136,7 +141,16 @@ class CartScreen extends StatelessWidget {
                   cart.getTotalAmount,
                   cart.getItems,
                 );
-                Navigator.pushNamed(context, OrdersScreen.routeName);
+                OrderItem item = OrderItem(
+                  orderId: DateTime.now().millisecond.toString(),
+                  time: DateTime.now(),
+                  amount: cart.getTotalAmount,
+                  cart: cart.getItems,
+                );
+                vendorOrder.addOrder(item);
+                vendorOrder.fetchOrders();
+                // Navigator.pushNamed(context, OrdersScreen.routeName);
+                Navigator.pushNamed(context, VendorScreen.routeName);
               },
               child: Text(
                 'Place Order',

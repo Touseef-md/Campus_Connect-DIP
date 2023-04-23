@@ -52,6 +52,10 @@ class Category extends StatelessWidget {
               ),
               Text(
                 categories[index].keys.toList()[0],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
               )
             ],
           );

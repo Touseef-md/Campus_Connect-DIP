@@ -19,6 +19,9 @@ class DrawerTile extends StatelessWidget {
       ),
       title: Text(
         title,
+        style: TextStyle(
+          color: Colors.black,
+        ),
       ),
       onTap: () {
         Navigator.pushNamed(context, routeName);

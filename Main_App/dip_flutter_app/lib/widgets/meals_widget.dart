@@ -14,11 +14,8 @@ class Meal extends StatelessWidget {
         itemBuilder: (ctx, index) {
           return InkWell(
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                MealDetailScreen.routeName,
-                arguments: dummyMeals[index]
-              );
+              Navigator.pushNamed(context, MealDetailScreen.routeName,
+                  arguments: dummyMeals[index]);
             },
             child: Card(
               shape: RoundedRectangleBorder(
@@ -113,10 +110,15 @@ class Meal extends StatelessWidget {
                       children: [
                         Text(
                           'THis is teh child ',
-                          style: TextStyle(),
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                         Text(
                           '\$${dummyMeals[index].price} for one',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
                         ),
                       ],
                     ),
