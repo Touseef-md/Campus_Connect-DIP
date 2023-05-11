@@ -8,6 +8,7 @@ import '../providers/cart_provider.dart';
 import '../providers/order_provider.dart';
 import '../screens/orders_screen.dart';
 import '../screens/vender_screen.dart';
+import '../providers/auth_provider.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
@@ -25,6 +26,10 @@ class CartScreen extends StatelessWidget {
       listen: false,
     );
     final vendorOrder = Provider.of<VendorOrders>(
+      context,
+      listen: false,
+    );
+    final auth = Provider.of<Auth>(
       context,
       listen: false,
     );
@@ -140,6 +145,7 @@ class CartScreen extends StatelessWidget {
                 order.addOrder(
                   cart.getTotalAmount,
                   cart.getItems,
+                  auth.getToken,
                 );
                 OrderItem item = OrderItem(
                   orderId: DateTime.now().millisecond.toString(),
@@ -147,10 +153,11 @@ class CartScreen extends StatelessWidget {
                   amount: cart.getTotalAmount,
                   cart: cart.getItems,
                 );
-                vendorOrder.addOrder(item);
-                vendorOrder.fetchOrders();
-                // Navigator.pushNamed(context, OrdersScreen.routeName);
-                Navigator.pushNamed(context, VendorScreen.routeName);
+                // vendorOrder.addOrder(item);
+                // vendorOrder.fetchOrders();
+                // order.addOrder(amount, currCart)
+                Navigator.pushNamed(context, OrdersScreen.routeName);
+                // Navigator.pushNamed(context, VendorScreen.routeName);
               },
               child: Text(
                 'Place Order',

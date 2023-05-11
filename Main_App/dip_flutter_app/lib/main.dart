@@ -30,17 +30,25 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (ctx) => Cart(),
+          create: (context) => Auth(),
         ),
         ChangeNotifierProvider(
-          create: (context) => Orders(),
+          create: (ctx) => Cart(),
+        ),
+        ChangeNotifierProxyProvider<Auth, Orders>(
+          update: (context, auth, previousOrdersValue) {
+            if (auth.getToken == '') {
+              return Orders([]);
+            }
+            return Orders((previousOrdersValue == null)
+                ? []
+                : previousOrdersValue.getOrders as List<OrderItem>);
+          },
+          create: (context) => Orders([]),
         ),
         ChangeNotifierProvider(
           create: (context) => VendorOrders(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => Auth(),
-        )
       ],
       child: MaterialApp(
         title: 'DIP App',
@@ -86,8 +94,8 @@ class MyApp extends StatelessWidget {
         ),
         // home: MainScreen(),
         routes: {
-          // '/': (ctx) => MainScreen(),
           '/': (context) => LoginScreen(),
+          MainScreen.routeName: (ctx) => MainScreen(),
           ProfileScreen.routeName: (ctx) => const ProfileScreen(),
           FeedbackScreen.routeName: (ctx) => FeedbackScreen(),
           HealthScreen.routeName: (ctx) => HealthScreen(),

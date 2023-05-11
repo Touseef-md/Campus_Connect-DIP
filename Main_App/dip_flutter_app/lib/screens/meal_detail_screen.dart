@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../modals/meal_item.dart';
-import '../widgets/badge.dart';
+import '../widgets/badge.dart' as bd;
 import '../widgets/current_quantity.dart';
 import '../providers/cart_provider.dart';
 
@@ -24,7 +24,7 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          Badge(
+          bd.Badge(
             color: Colors.pink,
           )
           // Badge(value: '1'),

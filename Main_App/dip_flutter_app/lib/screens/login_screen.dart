@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './main_screen.dart';
 import '../providers/auth_provider.dart';
+import '../providers/order_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -27,10 +29,20 @@ class _LoginScreenState extends State<LoginScreen> {
     print('Save is done ');
     try {
       print('INside try');
-      await Provider.of<Auth>(
+      final auth = Provider.of<Auth>(
         context,
         listen: false,
-      ).register(email);
+      );
+      await auth.register(email);
+      // print('THis is the auth response ${authResponse}');
+      print('THis is the token ${auth.getToken}');
+      await Provider.of<Orders>(
+        context,
+        listen: false,
+      ).fetchAndSet(
+        userId: auth.getToken,
+      );
+      Navigator.pushNamed(context, MainScreen.routeName);
     } catch (error) {
       print('This is the auth error${error}');
     }

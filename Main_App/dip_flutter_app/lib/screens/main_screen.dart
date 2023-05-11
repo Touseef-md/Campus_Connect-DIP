@@ -4,17 +4,18 @@ import '../widgets/carousel_slider.dart';
 import '../widgets/categories.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/meals_widget.dart';
-import '../widgets/badge.dart';
+import '../widgets/badge.dart' as Bd;
 import '../providers/cart_provider.dart';
 
 class MainScreen extends StatelessWidget {
+  static const routeName = '/home';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.grey,
       appBar: AppBar(
         actions: [
-          Badge(
+          Bd.Badge(
             color: Colors.pink,
           )
           // Badge(value: '1'),

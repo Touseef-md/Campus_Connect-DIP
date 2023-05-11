@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../screens/orders_screen.dart';
+import '../screens/login_screen.dart';
+import '../providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class ProfileWidget3 extends StatelessWidget {
   const ProfileWidget3({super.key});
@@ -18,21 +22,23 @@ class ProfileWidget3 extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            shape:const  RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(
                   50,
                 ),
               ),
             ),
-            onTap: () {},
-            leading:const  Icon(
+            onTap: () {
+              Navigator.pushNamed(context, OrdersScreen.routeName);
+            },
+            leading: const Icon(
               Icons.food_bank,
             ),
             title: const Text(
               'Your Orders',
             ),
-            trailing:const  Icon(
+            trailing: const Icon(
               Icons.arrow_forward,
             ),
           ),
@@ -73,7 +79,17 @@ class ProfileWidget3 extends StatelessWidget {
                 ),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              final auth = Provider.of<Auth>(
+                context,
+                listen: false,
+              );
+              auth.logout();
+              Navigator.pushNamed(
+                context,
+                LoginScreen.routeName,
+              );
+            },
             leading: Icon(
               Icons.food_bank,
             ),
