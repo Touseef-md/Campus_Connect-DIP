@@ -41,8 +41,15 @@ const orderSchema = new mongoose.Schema({
   userId: String,
   order: [Object],
 });
+
+const feedbackSchema = new mongoose.Schema({
+  userId: String,
+  typeOfFeedback: String,
+  description: String,
+});
 const Auth = mongoose.model("Auth", authSchema);
 const Orders = mongoose.model("Orders", orderSchema);
+const Feedback = mongoose.model("feedback", feedbackSchema);
 //-----------------------------------------------------
 app.get("/", (req, res) => {
   Auth.find({}, (err, found) => {
@@ -71,6 +78,11 @@ app.post("/", async (req, res) => {
   }
 });
 
+app.post("/feedback", async (req, res) => {
+  console.log("Post request for feedback");
+  console.log(req.body);
+  // let checkUser = await Feedback.find({ userId: req.body["userId"] });
+});
 // const user1 = new Auth({ email: "touseef.iitjmu@gmail.com" });
 // user1.save().then(
 //   () => {
